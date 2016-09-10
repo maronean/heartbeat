@@ -5,12 +5,23 @@
 from multiprocessing import Process, freeze_support
 from threading import Thread
 import multiprocessing
+import time
 
 class CriticalThread(Thread):
+    def criticalFunctionality(b,a):
+    #generic process, will crash with / zero
+        return (400 / (20 - a))
+        
+        
     def run(self):
+    #run critical thread until crash
+        variable = 0
         while True:
-            a = 2
-            
+            result = self.criticalFunctionality(variable)
+            print("Critical Functions")
+            time.sleep(1)
+            variable = variable + 1 
+
 
             
 class CriticalProcess(Process):
@@ -27,29 +38,34 @@ class CriticalProcess(Process):
         dThread = CriticalThread()
         dThread.start()
         stillGoing = True
-        #send heartbeat if critical thread is still active
+        
         while stillGoing:
+            time.sleep(2)
+            #send heartbeat if critical thread is still active
             if dThread.is_alive():
-                self.conn.send(['beat'])
+                self.conn.send('beat')
+                
             else:
-                self.conn.send('dead')
+            #Thread is dead close the connection
                 self.conn.close()
                 stillGoing = False
-                
+ 
+"""
+Checks for heartbeat messages sent to connRecv 
+Prints error if no beat revied for more than 4 seconds
+connRecv: Connection
+""" 
 def monitorHB(connRecv):
+
     stillGoing = True
     while(stillGoing):
-        print('hello')
-        try:
-            print('yes')
+        if connRecv.poll(4):
             print(connRecv.recv())
-            print('hello')
-            
-            sleep(2)
-        except:
+        
+        else:
             print('ERROR')
-            stillGoing = false
-        print('goodbye')
+            stillGoing = False
+    print('goodbye')
 
 connR, connS = multiprocessing.Pipe()            
    
@@ -57,6 +73,6 @@ if __name__ == '__main__':
     freeze_support()
     critProc = CriticalProcess(connS) 
     critProc.start()        
-monitorHB(connR)
+    monitorHB(connR)
 
     
