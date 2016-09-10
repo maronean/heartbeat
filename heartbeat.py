@@ -37,6 +37,10 @@ class CriticalProcess(Process):
                 stillGoing = False
                 
 def monitorHB(connRecv):
+"""
+Process to recieve heartbeat from pipe connection
+prints error and terminates upon failure
+"""
     stillGoing = True
     while(stillGoing):
         print('hello')
