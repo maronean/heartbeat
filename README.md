@@ -8,6 +8,13 @@ Nothing needed to set up the application
 ##Running the Application:
 1. Run reactor_control.py
 
+##Description
+Demonstrates failure detection of critical system components by utilizing a heartbeat
+pattern accross multiple processes. 
+
+Upon detection of failure, the system will output the following message:
+'Human input is needed to perform maintenance tasks'
+
 ##Critical Components:
 - Control Rods
 - Cooling Pump
