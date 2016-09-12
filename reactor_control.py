@@ -31,10 +31,11 @@ def monitor_hb(conn_recv):
             print('Human input is needed to perform maintenance tasks')
             still_going = False
 
-    print('goodbye')
+    print('Reactor shutting down')
 
 if __name__ == '__main__':
     freeze_support()
     crit_proc = CriticalProcess(connS)
+    print('Reactor is starting up')
     crit_proc.start()
     monitor_hb(connR)
