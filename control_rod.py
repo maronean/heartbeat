@@ -1,3 +1,4 @@
+import random
 from multiprocessing import Process
 
 import time
@@ -34,11 +35,14 @@ class CriticalProcess(Process):
 
 
 class CriticalThread(Thread):
+    initiated = False
+
     def critical_functionality(self, a):
-        try:
-            400 / (20 - a)
-        except ZeroDivisionError as ZDE:
-            raise ControlRodCriticalFailure('Foo', 'Bar')
+        num = random.randint(0, 10)
+        if num % 4 == 0 and self.initiated:
+            raise ControlRodException('Critical Failure!!!')
+        elif not self.initiated:
+            self.initiated = True
         return
 
     def run(self):
@@ -47,10 +51,8 @@ class CriticalThread(Thread):
         while True:
             self.critical_functionality(variable)
             time.sleep(2)
-            variable += 1
 
 
-class ControlRodCriticalFailure(Exception):
-    def __init__(self, expression, message):
-        self.expression = expression
+class ControlRodException(Exception):
+    def __init__(self, message=None):
         self.message = message

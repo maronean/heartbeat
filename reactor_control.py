@@ -22,9 +22,7 @@ def monitor_hb(conn_recv):
     while still_going:
         if conn_recv.poll(4):
             cooling_pump.pump_water()
-            time.sleep(1)
             print(conn_recv.recv())
-            time.sleep(1)
             steam_generator.generate_energy()
 
         else:
