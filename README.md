@@ -29,7 +29,7 @@ _**Cooling Pump**_
 **Stimulus**: Omission  
 **Environment**: Normal  
 **Artifact**: Cooling Pump Management Process 
-**Response**: Restart Coolant_Pump process and notify plant control room
+**Response**: Restart Coolant_Pump process and notify plant control room  
 **Response Measure**: Failure detected and service restarted within 5 seconds
 
 **RQ2**: Coolant pump shall be restarted and notify the plant control room within 5 seconds of failure
