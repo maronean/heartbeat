@@ -21,7 +21,7 @@ Upon detection of failure, the system will output the following message:
 
 ##Quality Attributes:
 
-_**Control Rods**_  
+_**Control Rods**_  -Satisfied in this iteration-
 **Source**: Internal   
 **Stimulus**: Omission  
 **Environment**: Normal  
@@ -31,7 +31,7 @@ _**Control Rods**_
 
 **RQ1**: Control Rod Management Process shall notify the plant control room of process failure within 2 seconds
 
-_**Cooling Pump**_  
+_**Cooling Pump**_  -Not yet satisfied-
 **Source**: Internal   
 **Stimulus**: Omission  
 **Environment**: Normal  
