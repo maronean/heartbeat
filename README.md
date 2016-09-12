@@ -2,8 +2,11 @@
 Andrew Marone  
 Chris Enoch
 
-##Installation:
+##Installation
+Nothing needed to set up the application
 
+##Running the Application:
+1. Run reactor_control.py
 
 ##Critical Components:
 - Control Rods
@@ -28,3 +31,5 @@ _**Cooling Pump**_
 **Artifact**:  
 **Response**:  
 **Response Measure**:  
+
+**RQ2**: Coolant pump shall be restarted and notify the plant control room within 5 seconds of failure
