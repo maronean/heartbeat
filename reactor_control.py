@@ -7,8 +7,6 @@ import multiprocessing
 
 from multiprocessing import freeze_support
 
-import time
-
 import cooling_pump
 import steam_generator
 from control_rod import CriticalProcess
