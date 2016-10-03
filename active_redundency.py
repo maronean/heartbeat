@@ -46,7 +46,7 @@ class CriticalThread(Thread):
     no_kill = False
 
     def __init__(self, no_kill=False):
-        super(CriticalThread, self).__init__()
+        Thread.__init__(self)
         self.no_kill = no_kill
 
     def critical_functionality(self, a):
@@ -83,12 +83,12 @@ def monitor_hb(conn_recv):
 if __name__ == '__main__':
     freeze_support()
     crit_proc = CriticalProcess('Critical', mainConnS)
-    back_up_crit_proc = CriticalProcess('Back up', backupConnR, True)
+    back_up_crit_proc = CriticalProcess('Back up', backupConnS, True)
     print('Reactor is starting up')
     crit_proc.start()
     back_up_crit_proc.start()
-    monitor_hb(backupConnR)
-    print('Critical Process Failure, Switching to backup process')
     monitor_hb(mainConnR)
+    print('Critical Process Failure, Switching to backup process')
+    monitor_hb(backupConnR)
 
     print('Done')
