@@ -12,26 +12,28 @@ import steam_generator
 from control_rod import CriticalProcess
 
 
-connR, connS = multiprocessing.Pipe()
+mainConnR, mainConnS = multiprocessing.Pipe()
+backupConnR, backupConnS = multiprocessing.Pipe()
 
 
 def monitor_hb(conn_recv):
     still_going = True
     while still_going:
         if conn_recv.poll(4):
-            cooling_pump.pump_water()
             print(conn_recv.recv())
-            steam_generator.generate_energy()
-
         else:
-            print('Human input is needed to perform maintenance tasks')
+            print('Processed Stopped')
             still_going = False
-
-    print('Reactor shutting down')
 
 if __name__ == '__main__':
     freeze_support()
-    crit_proc = CriticalProcess(connS)
+    crit_proc = CriticalProcess('Critical', mainConnS)
+    back_up_crit_proc = CriticalProcess('Back up', backupConnS, True)
     print('Reactor is starting up')
     crit_proc.start()
-    monitor_hb(connR)
+    back_up_crit_proc.start()
+    monitor_hb(mainConnR)
+    print('Critical Process Failure, Switching to backup process')
+    monitor_hb(backupConnR)
+
+    print('Done')
