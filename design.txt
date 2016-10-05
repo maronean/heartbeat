@@ -1,0 +1,5 @@
+##Quality Attributes:
+
+
+**RQ1**: Control Rod Management Process shall notify the plant control room of process failure within 2 seconds.
+**RQ2**: Control Rod Management Process shall begin monitoring secondary reactor_control process within 2 seconds of process failure.

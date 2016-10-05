@@ -20,7 +20,7 @@ def monitor_hb(conn_recv):
     still_going = True
     while still_going:
         if conn_recv.poll(4):
-            print(conn_recv.recv())
+            #print(conn_recv.recv())
         else:
             print('Processed Stopped')
             still_going = False
